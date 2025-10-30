@@ -208,7 +208,7 @@ define.flow.control <- function( control.dir, control.def.file, asp,
 
   flow.antigen[ flow.fluorophore == "AF" ] <- "AF"
   flow.antigen[ is.na( flow.antigen ) ] <- "other"
-  if ( is.na( flow.channel[ flow.fluorophore == "AF" ] ) )
+  if ( length( flow.channel[ flow.fluorophore == "AF" ] ) == 0 )
     flow.channel[ flow.fluorophore == "AF" ] <- asp$af.channel
 
   flow.channel[ is.na( flow.channel ) ] <- "other"
