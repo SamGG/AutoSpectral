@@ -41,6 +41,12 @@ At the moment, the following cytometers are supported:
 AutoSpectral is pretty complex and newly released, so there will be
 bugs. Sorry. Thanks to all of you providing feedback.
 
+Since one of my recent updates broke things, I’ll be moving to using
+tagged releases that should be easier to install if the latest version
+has flaws. I’ll also try to set up a separate development branch. Things
+probably should have been that way from the start, but this is all new
+to me.
+
 Please check the [help pages and
 articles](https://drcytometer.github.io/AutoSpectral/) before submitting
 bug reports. There’s a lot of info there.
