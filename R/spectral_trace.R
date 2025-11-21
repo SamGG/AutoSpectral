@@ -112,11 +112,15 @@ spectral.trace <- function( spectral.matrix,
   if ( !show.legend )
     spectra.plot <- spectra.plot + theme( legend.position = "none" )
 
-  if ( save )
+  if ( save ) {
     ggsave( file.path( plot.dir, sprintf( "%s.jpg", title )),
             spectra.plot,
             width = plot.width, height = plot.height,
             limitsize = FALSE )
+  } else {
+    return( spectra.plot )
+  }
+
 
   if ( split.lasers ) {
     # get number of lasers used
@@ -145,12 +149,13 @@ spectral.trace <- function( spectral.matrix,
     if ( !show.legend )
       spectra.plot.split <- spectra.plot.split + theme( legend.position = "none" )
 
-    if ( save )
+    if ( save ) {
       ggsave( file.path( plot.dir, sprintf( "%s by laser.jpg", title ) ),
               spectra.plot.split,
               width = plot.width, height = plot.height,
               limitsize = FALSE )
-    else
+    } else {
       return( spectra.plot.split )
+    }
   }
 }
