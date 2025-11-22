@@ -190,14 +190,24 @@ remove.af <- function( clean.expr, samp, spectral.channel, peak.channel,
     af.boundary.ggp[ af.boundary.ggp < asp$expr.data.min ] <- asp$expr.data.min
 
     # plot stained control clean-up
+    # handle cases of no removal
+    if ( length( gate.population.idx ) == nrow( expr.data.pos ) ) {
+      removed.data <- matrix( 0,
+                             nrow = nrow( expr.data.pos ),
+                             ncol = ncol( expr.data.pos ),
+                             dimnames = dimnames( expr.data.pos ) )
+    } else {
+      removed.data <- expr.data.pos[ -gate.population.idx,
+                                     , drop = FALSE ]
+    }
+
     spectral.ribbon.plot( pos.expr.data = expr.data.pos,
                           neg.expr.data = expr.data.pos[ gate.population.idx, , drop = FALSE ],
                           spectral.channel = spectral.channel,
                           asp = asp, fluor.name = samp,
                           title = asp$af.plot.filename,
                           af = TRUE,
-                          removed.data = expr.data.pos[ -gate.population.idx,
-                                                        , drop = FALSE ] )
+                          removed.data = removed.data )
 
     # plot AF removal gating on stained control
     gate.af.sample.plot( gate.data.pos, samp, af.boundary.ggp, asp )
@@ -207,6 +217,16 @@ remove.af <- function( clean.expr, samp, spectral.channel, peak.channel,
       negative.label <- paste( samp, "negative", matching.negative )
 
       # plot negative clean-up
+      if ( length( gate.neg.idx ) == nrow( expr.data.neg ) ) {
+        removed.data <- matrix( 0,
+                                nrow = nrow( expr.data.neg ),
+                                ncol = ncol( expr.data.neg ),
+                                dimnames = dimnames( expr.data.neg ) )
+      } else {
+        removed.data <- expr.data.neg[ -gate.neg.idx,
+                                       , drop = FALSE ]
+      }
+
       spectral.ribbon.plot( pos.expr.data = expr.data.neg,
                             neg.expr.data = expr.data.neg[ gate.neg.idx, , drop = FALSE ],
                             spectral.channel = spectral.channel,
@@ -214,8 +234,7 @@ remove.af <- function( clean.expr, samp, spectral.channel, peak.channel,
                             fluor.name = negative.label,
                             title = asp$af.plot.filename,
                             af = TRUE,
-                            removed.data = expr.data.neg[ -gate.neg.idx,
-                                                          , drop = FALSE ] )
+                            removed.data = removed.data )
 
       # plot AF removal gating on negative control
       gate.af.sample.plot( gate.data.neg, negative.label, af.boundary.ggp, asp )

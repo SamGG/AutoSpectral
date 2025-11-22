@@ -109,6 +109,7 @@ spectral.ribbon.plot <- function(
         pos.expr.data[ , spectral.channel, drop = FALSE ],
         neg.expr.data[ , spectral.channel, drop = FALSE ]
       )
+
       if ( is.null( factor.names ) )
         factor.names <- c( fluor.name, paste( "Raw", fluor.name ), "Negative" )
 
@@ -125,6 +126,7 @@ spectral.ribbon.plot <- function(
         neg.expr.data[ , spectral.channel, drop = FALSE ],
         removed.data[ , spectral.channel, drop = FALSE ]
       )
+
       if ( is.null( factor.names ) )
         factor.names <- c(
           paste( "Original", fluor.name ),
@@ -191,12 +193,9 @@ spectral.ribbon.plot <- function(
     inverse = biexp.inverse
   )
 
-  # plotting
+  # create plot
   ribbon.plot <- suppressWarnings(
-    ggplot(
-      ribbon.plot.long,
-      aes( channel, value )
-    ) +
+    ggplot( ribbon.plot.long, aes( channel, value ) ) +
       scale_y_continuous(
         trans = plot.biexp.transform,
         breaks = ribbon.breaks,
@@ -204,10 +203,11 @@ spectral.ribbon.plot <- function(
         labels = ribbon.labels
       ) +
       geom_bin2d( bins = c( length( unique( ribbon.plot.long$channel ) ),
-                            asp$ribbon.bins ) ) +
-      facet_wrap(~group, ncol = 1) +
-      xlab("Detector") +
-      ylab("Intensity") +
+                     asp$ribbon.bins ),
+                 boundary = 0.5 ) +
+      facet_wrap( ~group, ncol = 1 ) +
+      xlab( "Detector" ) +
+      ylab( "Intensity" ) +
       theme_minimal() +
       theme(
         axis.text.x = element_text(
@@ -250,6 +250,7 @@ spectral.ribbon.plot <- function(
         create.dir = TRUE
       )
     )
+
   } else {
     suppressWarnings( print( ribbon.plot ) )
   }

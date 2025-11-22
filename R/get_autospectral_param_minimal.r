@@ -124,7 +124,7 @@ get.autospectral.param.minimal <- function()
       ribbon.scale.colors = c( NA, "#440154FF", "#238A8DFF", "#55C667FF",
                                "#B8DE29FF", "#FDE725FF" ),
       ribbon.scale.values = c( 0, 0.1, 0.2, 0.3, 0.4, 1 ),
-      ribbon.bins = 200,
+      ribbon.bins = 300,
       ribbon.plot.width = 15,
       ribbon.plot.height = 10,
       ribbon.plot.filename = "spectral_ribbon_plot.jpg",

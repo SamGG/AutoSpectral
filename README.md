@@ -73,8 +73,8 @@ files for establishing the workflow, contact the author/maintainer.
 
 This work has received funding from the KU Leuven C1 program, the
 European Union’s Horizon 2020 research and innovation programme under
-grant agreement No 874707 (EXIMIOUS), Wellcome Investigator Award,
-222442/A/21/Z and UKRI Proactive Vaccinology Award, MR/Y004450/1
+grant agreement No 874707 (EXIMIOUS), Wellcome Investigator Award
+222442/A/21/Z, and UKRI Proactive Vaccinology Award MR/Y004450/1
 (IMMPROVE).
 
 AutoSpectral is provided under an AGPL3 licence.
@@ -102,6 +102,9 @@ This is a basic example of the workflow, using samples from the ID7000.
 This only illustrates weighted least squares unmixing. For per-cell
 autofluorescence extraction or per-cell fluorophore optimization, see
 the articles on those topics.
+
+Please see the [Full
+Workflow](https://drcytometer.github.io/AutoSpectral/articles/Full_AutoSpectral_Workflow.html)
 
 ``` r
 library( AutoSpectral )
